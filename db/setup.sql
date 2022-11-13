@@ -9,5 +9,3 @@ CREATE TABLE users (
   created_on DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
   updated_on DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-
-INSERT INTO users (username, password, email) VALUES ('admin', 'admin', 'admin@domain.com');
