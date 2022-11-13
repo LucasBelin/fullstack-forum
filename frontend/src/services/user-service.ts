@@ -11,16 +11,16 @@ const UserSchema = z.object({
 
 const UserArraySchema = z.array(UserSchema)
 
-export type UserDetails = z.infer<typeof UserSchema>
+export type User = z.infer<typeof UserSchema>
 
 const baseUrl = "http://localhost:8080/api"
 
-export const getUsers = async (): Promise<UserDetails[]> => {
+export const getUsers = async (): Promise<User[]> => {
   return axios
     .get(`${baseUrl}/users`)
     .then(res => {
-      const users: UserDetails[] = []
-      res.data.forEach((user: any) => {
+      const users: User[] = []
+      res.data.forEach((user: User) => {
         users.push({
           id: user.id,
           username: user.username,
