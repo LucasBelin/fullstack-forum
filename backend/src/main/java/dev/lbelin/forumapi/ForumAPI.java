@@ -1,4 +1,4 @@
-package com.lbelin.forumapi;
+package dev.lbelin.forumapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

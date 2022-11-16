@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>com.lbelin</groupId>
+	<groupId>dev.lbelin</groupId>
 	<artifactId>forumapi</artifactId>
 	<version>1</version>
 	<name>forumapi</name>

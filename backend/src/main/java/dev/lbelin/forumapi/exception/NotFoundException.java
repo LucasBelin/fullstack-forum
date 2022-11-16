@@ -1,4 +1,4 @@
-package com.lbelin.forumapi.exception;
+package dev.lbelin.forumapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,4 +1,4 @@
-package com.lbelin.forumapi.model;
+package dev.lbelin.forumapi.model;
 
 import java.util.Date;
 

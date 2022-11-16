@@ -1,11 +1,11 @@
-package com.lbelin.forumapi.mapper;
+package dev.lbelin.forumapi.mapper;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.lbelin.forumapi.dto.UserDetailsDto;
-import com.lbelin.forumapi.model.User;
+import dev.lbelin.forumapi.dto.UserDetailsDto;
+import dev.lbelin.forumapi.model.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {

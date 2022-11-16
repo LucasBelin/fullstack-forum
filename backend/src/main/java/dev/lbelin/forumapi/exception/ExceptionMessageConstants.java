@@ -1,4 +1,4 @@
-package com.lbelin.forumapi.exception;
+package dev.lbelin.forumapi.exception;
 
 public final class ExceptionMessageConstants {
     

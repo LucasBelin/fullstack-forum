@@ -1,4 +1,4 @@
-package com.lbelin.forumapi.dto;
+package dev.lbelin.forumapi.dto;
 
 import java.util.Date;
 
@@ -8,13 +8,16 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class UserDetailsDto {
-    
+public class UserDto {
+        
     @NotNull
     private Long id;
-
+    
     @NotBlank
     private String username;
+
+    @NotBlank
+    private String password;
 
     @NotBlank
     private String email;
