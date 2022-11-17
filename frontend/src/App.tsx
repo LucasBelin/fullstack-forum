@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react"
-import { getUsers, User } from "./services/user-service"
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
 
 function App() {
-  const [users, setUsers] = useState<User[]>([])
-  const [loading, setLoading] = useState(true)
-
-  const fetchUsers = async () => {
-    setLoading(true)
-    const data = await getUsers()
-    setUsers(data)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    fetchUsers()
-  }, [])
-
   return (
-    <div className="h-screen w-screen flex items-center flex-col bg-slate-900 pt-28 gap-28">
-      <h1 className="text-white font-bold text-3xl mb-5">Hello World</h1>
-      {loading ? (
-        <p className="text-white">Loading...</p>
-      ) : (
-        <ul className="flex flex-col gap-5">
-          {users.map(user => (
-            <li key={user.id} className="text-white">
-              {user.username}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   )
 }
 
