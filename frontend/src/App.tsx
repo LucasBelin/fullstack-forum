@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { getUsers, UserDetails } from "./services/user-service"
+import { getUsers, User } from "./services/user-service"
 
 function App() {
-  const [users, setUsers] = useState<UserDetails[]>([])
+  const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
 
   const fetchUsers = async () => {
