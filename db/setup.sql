@@ -1,5 +1,5 @@
-CREATE DATABASE fullstack_forum;
-USE fullstack_forum;
+CREATE DATABASE forum;
+USE forum;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
