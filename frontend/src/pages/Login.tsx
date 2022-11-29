@@ -1,6 +1,36 @@
-import { Link } from "react-router-dom"
+import axios from "axios"
+import { useRef } from "react"
+import { useSignIn } from "react-auth-kit"
+import { Link, useNavigate } from "react-router-dom"
 
 function Login() {
+  const usernameRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
+  const signIn = useSignIn()
+  const navigate = useNavigate()
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault()
+
+    try {
+      const username = usernameRef.current?.value
+      const password = passwordRef.current?.value
+      const res = await axios.post("http://localhost:8080/api/login", {
+        username: username,
+        password: password,
+      })
+      signIn({
+        token: res.data.token,
+        expiresIn: 6000000,
+        tokenType: "Bearer",
+        authState: { username: username },
+      })
+      navigate("/")
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <div className="h-screen w-screen bg-zinc-800 flex justify-center items-center">
       <form
@@ -11,12 +41,24 @@ function Login() {
         <label htmlFor="username" className="place-self-start text-white">
           Username
         </label>
-        <input type="text" id="username" placeholder="Enter your username" className="form-input mb-5" />
+        <input
+          ref={usernameRef}
+          type="text"
+          id="username"
+          placeholder="Enter your username"
+          className="form-input mb-5"
+        />
         <label htmlFor="password" className="place-self-start text-white">
           Password
         </label>
-        <input type="password" id="password" placeholder="Enter your password" className="form-input" />
-        <button type="submit" className="form-submit">
+        <input
+          ref={passwordRef}
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          className="form-input"
+        />
+        <button onClick={onSubmit} className="form-submit">
           Login
         </button>
         <span className="text-white text-sm items-center flex flex-col">
