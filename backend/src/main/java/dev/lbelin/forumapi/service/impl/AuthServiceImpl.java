@@ -1,6 +1,7 @@
 package dev.lbelin.forumapi.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Value("${jwt.expiration.ms}")
+    private Long expirationMs;
+
     @Override
     public AuthResponseDto login(AuthRequestDto authRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -29,6 +33,6 @@ public class AuthServiceImpl implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-        return new AuthResponseDto(jwt);
+        return new AuthResponseDto(jwt, expirationMs);
     }
 }
