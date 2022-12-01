@@ -1,35 +1,43 @@
 import axios from "axios"
 import { useRef } from "react"
 import { useSignIn } from "react-auth-kit"
+import { useMutation } from "react-query"
 import { Link, useNavigate } from "react-router-dom"
+import { z } from "zod"
+
+const AuthResponse = z.object({
+  token: z.string(),
+  tokenType: z.string(),
+  expiresIn: z.number(),
+})
+type AuthResponse = z.infer<typeof AuthResponse>
+
+const AuthRequest = z.object({
+  username: z.string().optional(),
+  password: z.string().optional(),
+})
+type AuthRequest = z.infer<typeof AuthRequest>
 
 function Login() {
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
-  const signIn = useSignIn()
   const navigate = useNavigate()
-
-  const onSubmit = async (e: any) => {
-    e.preventDefault()
-
-    try {
-      const username = usernameRef.current?.value
-      const password = passwordRef.current?.value
-      const res = await axios.post("http://localhost:8080/api/login", {
-        username: username,
-        password: password,
-      })
-      signIn({
-        token: res.data.token,
-        expiresIn: 6000000,
-        tokenType: "Bearer",
-        authState: { username: username },
-      })
-      navigate("/")
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const signIn = useSignIn()
+  const authQuery = useMutation(
+    ({ username, password }: AuthRequest) =>
+      axios.post("http://localhost:8080/api/login", { username, password }).then(res => AuthResponse.parse(res.data)),
+    {
+      onSuccess: ({ token, tokenType, expiresIn }: AuthResponse) => {
+        signIn({
+          token: token,
+          tokenType: tokenType,
+          expiresIn: expiresIn,
+          authState: { username: usernameRef.current?.value },
+        })
+        navigate("/")
+      },
+    },
+  )
 
   return (
     <div className="h-screen w-screen bg-zinc-800 flex justify-center items-center">
@@ -58,7 +66,13 @@ function Login() {
           placeholder="Enter your password"
           className="form-input"
         />
-        <button onClick={onSubmit} className="form-submit">
+        <button
+          onClick={(e: any) => {
+            e.preventDefault()
+            authQuery.mutate({ username: usernameRef.current?.value, password: passwordRef.current?.value })
+          }}
+          className="form-submit"
+        >
           Login
         </button>
         <span className="text-white text-sm items-center flex flex-col">
