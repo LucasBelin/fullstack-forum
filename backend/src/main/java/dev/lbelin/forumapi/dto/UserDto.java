@@ -9,15 +9,12 @@ import lombok.Data;
 
 @Data
 public class UserDto {
-        
+
     @NotNull
     private Long id;
-    
-    @NotBlank
-    private String username;
 
     @NotBlank
-    private String password;
+    private String username;
 
     @NotBlank
     private String email;

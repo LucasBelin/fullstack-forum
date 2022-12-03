@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.lbelin.forumapi.dto.UserDetailsDto;
+import dev.lbelin.forumapi.dto.UserDto;
 import dev.lbelin.forumapi.facade.UserFacade;
 
 @RestController
@@ -19,12 +19,12 @@ public class UserController {
     private UserFacade userFacade;
 
     @GetMapping
-    public List<UserDetailsDto> getUsers() {
+    public List<UserDto> getUsers() {
         return userFacade.getUsers();
     }
 
     @GetMapping("/{username}")
-    public UserDetailsDto getUserByUsername(@PathVariable final String username) {
+    public UserDto getUserByUsername(@PathVariable final String username) {
         return userFacade.getUserByUsername(username);
     }
 }

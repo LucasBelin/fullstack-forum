@@ -2,11 +2,11 @@ package dev.lbelin.forumapi.facade;
 
 import java.util.List;
 
-import dev.lbelin.forumapi.dto.UserDetailsDto;
+import dev.lbelin.forumapi.dto.UserDto;
 
 public interface UserFacade {
 
-    public List<UserDetailsDto> getUsers();
+    public List<UserDto> getUsers();
 
-    public UserDetailsDto getUserByUsername(String username);
+    public UserDto getUserByUsername(String username);
 }

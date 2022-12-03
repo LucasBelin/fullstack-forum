@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import dev.lbelin.forumapi.dto.UserDetailsDto;
+import dev.lbelin.forumapi.dto.UserDto;
 import dev.lbelin.forumapi.facade.UserFacade;
 import dev.lbelin.forumapi.mapper.UserMapper;
 import dev.lbelin.forumapi.service.UserService;
 
 @Service
 public class UserFacadeImpl implements UserFacade {
-    
+
     private UserMapper userMapper;
 
     private UserService userService;
@@ -22,12 +22,12 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public List<UserDetailsDto> getUsers() {
+    public List<UserDto> getUsers() {
         return userMapper.toDto(userService.getUsers());
     }
 
     @Override
-    public UserDetailsDto getUserByUsername(String username) {
+    public UserDto getUserByUsername(String username) {
         return userMapper.toDto(userService.getUserByUsername(username));
     }
 }
