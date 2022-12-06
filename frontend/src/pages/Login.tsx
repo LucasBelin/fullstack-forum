@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useRef } from "react"
 import { useSignIn } from "react-auth-kit"
+import { FaForumbee } from "react-icons/fa"
 import { useMutation } from "react-query"
 import { Link, useNavigate } from "react-router-dom"
 import { z } from "zod"
@@ -46,7 +47,9 @@ function Login() {
         action="submit"
         className="form-gradient shadow-lg flex flex-col place-items-center h-fit pb-16 pt-8 px-8 rounded-lg min-w-[400px]"
       >
-        <img src="/assets/logo.svg" alt="logo" className="w-[80px] h-[80px] mb-12" />
+        <div className="mb-12">
+          <FaForumbee size={80} color="white" />
+        </div>
         <label htmlFor="username" className="place-self-start text-white">
           Username
         </label>
