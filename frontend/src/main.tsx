@@ -1,9 +1,13 @@
+import axios from "axios"
 import React from "react"
 import { AuthProvider } from "react-auth-kit"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import App from "./App"
 import "./index.css"
+
+axios.defaults.baseURL = "http://localhost:8080/api"
+axios.defaults.headers.post["Content-Type"] = "application/json"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

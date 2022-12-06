@@ -25,7 +25,7 @@ function Login() {
   const signIn = useSignIn()
   const authQuery = useMutation(
     ({ username, password }: AuthRequest) =>
-      axios.post("http://localhost:8080/api/login", { username, password }).then(res => AuthResponse.parse(res.data)),
+      axios.post("/login", { username, password }).then(res => AuthResponse.parse(res.data)),
     {
       onSuccess: ({ token, tokenType, expiresIn }: AuthResponse) => {
         signIn({
@@ -34,6 +34,7 @@ function Login() {
           expiresIn: expiresIn,
           authState: { username: usernameRef.current?.value },
         })
+        axios.defaults.headers.common["Authorization"] = `${tokenType} ${token}`
         navigate("/")
       },
     },
