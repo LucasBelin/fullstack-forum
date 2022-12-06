@@ -51,6 +51,7 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/login").permitAll().and()
+                .authorizeRequests().antMatchers("/api/users/register").permitAll().and()
                 .authorizeRequests().antMatchers("/api/**").authenticated();
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(),

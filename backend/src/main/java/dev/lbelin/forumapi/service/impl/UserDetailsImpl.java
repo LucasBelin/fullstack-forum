@@ -1,7 +1,7 @@
 package dev.lbelin.forumapi.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +19,8 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
     private String password;
     private String email;
-    private Date createdOn;
-    private Date updatedOn;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
 
     public UserDetailsImpl(String username, String password) {
         this.username = username;

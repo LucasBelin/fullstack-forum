@@ -1,6 +1,6 @@
 package dev.lbelin.forumapi.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,8 +20,8 @@ public class UserDto {
     private String email;
 
     @NotBlank
-    private Date createdOn;
+    private LocalDateTime createdOn;
 
     @NotBlank
-    private Date updatedOn;
+    private LocalDateTime updatedOn;
 }

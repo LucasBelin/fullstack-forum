@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import dev.lbelin.forumapi.dto.RegistrationDto;
 import dev.lbelin.forumapi.dto.UserDto;
 import dev.lbelin.forumapi.facade.UserFacade;
 import dev.lbelin.forumapi.mapper.UserMapper;
@@ -29,5 +30,10 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public UserDto getUserByUsername(String username) {
         return userMapper.toDto(userService.getUserByUsername(username));
+    }
+
+    @Override
+    public UserDto createUser(RegistrationDto userDto) {
+        return userMapper.toDto(userService.createUser(userMapper.toEntity(userDto)));
     }
 }
