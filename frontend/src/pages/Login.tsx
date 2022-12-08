@@ -39,7 +39,7 @@ function Login() {
   const passwordRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const signIn = useSignIn()
-  const authQuery = useMutation(
+  const authMutation = useMutation(
     ({ username, password }: AuthRequest) =>
       axios.post("/login", { username, password }).then(res => AuthResponse.parse(res.data)),
     {
@@ -73,7 +73,7 @@ function Login() {
         <SubmitButton
           onClick={(e: any) => {
             e.preventDefault()
-            authQuery.mutate({ username: usernameRef.current?.value, password: passwordRef.current?.value })
+            authMutation.mutate({ username: usernameRef.current?.value, password: passwordRef.current?.value })
           }}
         >
           Login
