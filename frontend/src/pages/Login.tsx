@@ -31,7 +31,7 @@ const FormInput = tw.input`
   text-white focus:ring-blue-500 focus:border-blue-500
 `
 const SubmitButton = tw.button`
-  bg-zinc-800 text-white text-xl mt-8 px-8 py-2 rounded-lg mb-5 hover:bg-zinc-700 transition-all duration-200 ease-in-out
+  bg-slate-800 text-white text-xl mt-8 px-8 py-2 rounded-lg mb-5 hover:bg-slate-700 transition-all duration-200 ease-in-out
 `
 
 function Login() {
