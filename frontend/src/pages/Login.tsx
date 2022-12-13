@@ -21,7 +21,7 @@ const AuthRequest = z.object({
 type AuthRequest = z.infer<typeof AuthRequest>
 
 const Container = tw.div`
-  h-screen w-screen bg-zinc-800 flex justify-center items-center
+  h-screen w-screen bg-slate-900 flex justify-center items-center
 `
 const LoginForm = tw.form`
   bg-gradient-to-bl from-gray-900 to-black shadow-lg flex flex-col place-items-center h-fit pb-16 pt-8 px-8 rounded-lg min-w-[400px]
