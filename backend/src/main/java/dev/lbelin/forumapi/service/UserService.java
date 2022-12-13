@@ -8,7 +8,11 @@ public interface UserService {
 
     List<User> getUsers();
 
-    User getUserByUsername(String username);
+    User getUserByUsername(final String username);
 
-    User createUser(User user);
+    void checkUserDataIsValid(final User user);
+
+    User createUser(final User user);
+
+    Boolean isPasswordValid(final String password);
 }
