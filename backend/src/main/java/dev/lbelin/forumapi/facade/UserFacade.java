@@ -9,7 +9,7 @@ public interface UserFacade {
 
     public List<UserDto> getUsers();
 
-    public UserDto getUserByUsername(String username);
+    public UserDto getUserByUsername(final String username);
 
-    public UserDto createUser(RegistrationDto userDto);
+    public UserDto createUser(final RegistrationDto userDto);
 }
