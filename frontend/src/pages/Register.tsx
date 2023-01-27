@@ -27,7 +27,7 @@ const Container = tw.div`
   h-screen w-screen bg-slate-900 flex justify-center items-center
 `
 const RegisterForm = tw.form`
-  bg-gradient-to-bl from-gray-900 to-black shadow-lg flex flex-col place-items-center h-fit pb-16 pt-8 px-8 rounded-lg min-w-[400px]
+  flex flex-col justify-center bg-gradient-to-bl from-gray-900 to-black px-16 py-16 rounded-md bg-opacity-5 h-fit max-w-xl shadow-inner shadow-slate-800
 `
 const Label = tw.label`
   place-self-start text-white mt-5
@@ -62,10 +62,7 @@ function Register() {
 
   return (
     <Container>
-      <form
-        action="submit"
-        className="flex flex-col bg-gradient-to-bl from-gray-900 to-black border border-black shadow-lg py-8 px-16 rounded-md bg-opacity-5 h-[80%] max-w-xl"
-      >
+      <RegisterForm action="submit">
         <h1 className="text-white text-3xl text-center">Create your account</h1>
         <Label htmlFor="username" className="place-self-start text-white">
           Username
@@ -74,7 +71,7 @@ function Register() {
           <span className="inline-flex items-center px-3 text-[20px] text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             <FiAtSign size={20} />
           </span>
-          <Input type="text" id="username" placeholder="Jymmiah" />
+          <Input type="text" id="username" placeholder="Username" />
         </div>
 
         <Label htmlFor="email" className="place-self-start text-white">
@@ -88,7 +85,7 @@ function Register() {
             type="text"
             id="email"
             className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="lorem@ipsum.com"
+            placeholder="john-doe@gmail.com"
           />
         </div>
 
@@ -119,7 +116,7 @@ function Register() {
             isPassword
             type={showPassword ? "text" : "password"}
             id="confirm-password"
-            placeholder="Just to make sure"
+            placeholder="Confirm password"
           />
           <button
             onClick={togglePasswordVisibility}
@@ -137,7 +134,7 @@ function Register() {
             </Link>
           </span>
         </div>
-      </form>
+      </RegisterForm>
     </Container>
   )
 }

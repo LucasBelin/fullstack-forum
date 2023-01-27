@@ -24,7 +24,8 @@ const Container = tw.div`
   h-screen w-screen bg-slate-900 flex justify-center items-center
 `
 const LoginForm = tw.form`
-  bg-gradient-to-bl from-gray-900 to-black shadow-lg flex flex-col place-items-center h-fit pb-16 pt-8 px-8 rounded-lg min-w-[400px]
+  bg-gradient-to-bl from-gray-900 to-black shadow-inner shadow-slate-800 flex flex-col place-items-center h-fit pb-16 pt-8 px-8
+  rounded-lg min-w-[400px] border-t border-r border-t-slate-800 border-r-slate-800
 `
 const FormInput = tw.input`
   text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400
