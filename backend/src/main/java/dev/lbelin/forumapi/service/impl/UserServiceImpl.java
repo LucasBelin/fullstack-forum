@@ -55,6 +55,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public Boolean isPasswordValid(String password) {
+        // minimum 8 characters, at least one uppercase letter, one lowercase letter,
+        // one number and one special character
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%&+=!])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+
     /**
      * @throws ConflictException            if a user with the same username or
      *                                      email already exists (http 409)
@@ -67,12 +74,5 @@ public class UserServiceImpl implements UserService {
         checkUserDataIsValid(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
-    }
-
-    @Override
-    public Boolean isPasswordValid(String password) {
-        // minimum 8 characters, at least one uppercase letter, one lowercase letter,
-        // one number and one special character
-        return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$");
     }
 }

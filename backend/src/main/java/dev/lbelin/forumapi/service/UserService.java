@@ -12,7 +12,7 @@ public interface UserService {
 
     void checkUserDataIsValid(final User user);
 
-    User createUser(final User user);
-
     Boolean isPasswordValid(final String password);
+
+    User createUser(final User user);
 }
