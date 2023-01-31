@@ -131,13 +131,13 @@ function Register() {
   return (
     <Container>
       <RegisterForm action="submit">
-        <h1 className="text-white text-3xl text-center">Create your account</h1>
+        <h1 className="text-center text-3xl text-white">Create your account</h1>
         <Label htmlFor="username" className="place-self-start text-white">
           Username
         </Label>
         <div>
           <div className="flex">
-            <span className="inline-flex items-center px-3 text-[20px] text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-[20px] text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">
               <FiAtSign size={20} />
             </span>
             <Input
@@ -149,7 +149,7 @@ function Register() {
             />
           </div>
           {usernameError ? (
-            <span className="text-red-600 text-sm ml-2">The username doesn't meet the requirements.</span>
+            <span className="ml-2 text-sm text-red-600">The username doesn't meet the requirements.</span>
           ) : null}
         </div>
 
@@ -158,13 +158,13 @@ function Register() {
         </Label>
         <div>
           <div className="flex">
-            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">
               <AiOutlineMail size={20} />
             </span>
             <Input type="text" id="email" placeholder="john-doe@gmail.com" onBlur={validateEmail} ref={emailRef} />
           </div>
           {emailError ? (
-            <span className="text-red-600 text-sm ml-2">The email doesn't meet the requirements.</span>
+            <span className="ml-2 text-sm text-red-600">The email doesn't meet the requirements.</span>
           ) : null}
         </div>
 
@@ -173,7 +173,7 @@ function Register() {
         </Label>
         <div>
           <div className="flex">
-            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+            <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">
               <AiTwotoneLock size={20} />
             </span>
             <Input
@@ -186,13 +186,13 @@ function Register() {
             />
             <button
               onClick={togglePasswordVisibility}
-              className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-r-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+              className="inline-flex items-center rounded-r-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400"
             >
               {showPassword ? <AiTwotoneEye size={20} /> : <AiTwotoneEyeInvisible size={20} />}
             </button>
           </div>
           {passwordError ? (
-            <span className="text-red-600 text-sm ml-2">The password doesn't meet the requirements.</span>
+            <span className="ml-2 text-sm text-red-600">The password doesn't meet the requirements.</span>
           ) : null}
         </div>
 
@@ -200,7 +200,7 @@ function Register() {
           Confirm password
         </Label>
         <div className="flex">
-          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400">
             <AiTwotoneLock size={20} />
           </span>
           <Input
@@ -212,12 +212,12 @@ function Register() {
           />
           <button
             onClick={toggleConfirmPasswordVisibility}
-            className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-r-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+            className="inline-flex items-center rounded-r-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400"
           >
             {showConfirmPassword ? <AiTwotoneEye size={20} /> : <AiTwotoneEyeInvisible size={20} />}
           </button>
         </div>
-        {passwordMismatchError ? <span className="text-red-600 text-sm ml-2">The passwords don't match.</span> : null}
+        {passwordMismatchError ? <span className="ml-2 text-sm text-red-600">The passwords don't match.</span> : null}
         <SubmitButton
           onClick={e => {
             e.preventDefault()
@@ -230,10 +230,10 @@ function Register() {
         >
           Register
         </SubmitButton>
-        <div className="px-32 flex flex-col items-center">
-          <span className="text-white text-sm items-center flex flex-col">
+        <div className="flex flex-col items-center px-32">
+          <span className="flex flex-col items-center text-sm text-white">
             Already have an account ? <br />
-            <Link to="/login" className="text-blue-500 underline hover:text-blue-400 transition-all ease-in-out">
+            <Link to="/login" className="text-blue-500 underline transition-all ease-in-out hover:text-blue-400">
               Log in here
             </Link>
           </span>

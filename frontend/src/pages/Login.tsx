@@ -79,9 +79,9 @@ function Login() {
         >
           Login
         </SubmitButton>
-        <span className="text-white text-sm items-center flex flex-col">
+        <span className="flex flex-col items-center text-sm text-white">
           Don't have an account yet ? <br />
-          <Link to="/register" className="text-blue-600 underline hover:text-blue-500 transition-all ease-in-out">
+          <Link to="/register" className="text-blue-600 underline transition-all ease-in-out hover:text-blue-500">
             Register here
           </Link>
         </span>
