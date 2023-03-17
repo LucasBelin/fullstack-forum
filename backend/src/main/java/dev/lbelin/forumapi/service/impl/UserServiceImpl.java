@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.lbelin.forumapi.business.impl.UserBusinessImpl;
 import dev.lbelin.forumapi.exception.BadRequestException;
 import dev.lbelin.forumapi.exception.ConflictException;
 import dev.lbelin.forumapi.exception.ExceptionMessageConstants;
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserBusinessImpl userBusiness;
+
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -40,28 +44,6 @@ public class UserServiceImpl implements UserService {
         throw new NotFoundException(ExceptionMessageConstants.USER_USERNAME_NOT_FOUND);
     }
 
-    @Override
-    public void checkUserDataIsValid(User user) {
-        Boolean userExists = userRepository.findByUsername(user.getUsername()).isPresent();
-        if (userExists) {
-            throw new ConflictException(ExceptionMessageConstants.USER_USERNAME_ALREADY_EXISTS);
-        }
-        Boolean emailExists = userRepository.existsByEmail(user.getEmail());
-        if (emailExists) {
-            throw new ConflictException(ExceptionMessageConstants.USER_EMAIL_ALREADY_EXISTS);
-        }
-        if (!isPasswordValid(user.getPassword())) {
-            throw new BadRequestException(ExceptionMessageConstants.USER_PASSWORD_NOT_VALID);
-        }
-    }
-
-    @Override
-    public Boolean isPasswordValid(String password) {
-        // minimum 8 characters, at least one uppercase letter, one lowercase letter,
-        // one number and one special character
-        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%&+=!])[A-Za-z\\d@$!%*?&]{8,}$");
-    }
-
     /**
      * @throws ConflictException            if a user with the same username or
      *                                      email already exists (http 409)
@@ -71,7 +53,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User createUser(User user) {
-        checkUserDataIsValid(user);
+        userBusiness.validateUserData(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

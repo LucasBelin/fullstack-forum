@@ -10,9 +10,5 @@ public interface UserService {
 
     User getUserByUsername(final String username);
 
-    void checkUserDataIsValid(final User user);
-
-    Boolean isPasswordValid(final String password);
-
     User createUser(final User user);
 }
