@@ -2,6 +2,7 @@ package dev.lbelin.forumapi.facade.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.lbelin.forumapi.dto.RegistrationDto;
@@ -13,14 +14,11 @@ import dev.lbelin.forumapi.service.UserService;
 @Service
 public class UserFacadeImpl implements UserFacade {
 
+    @Autowired
     private UserMapper userMapper;
 
+    @Autowired
     private UserService userService;
-
-    public UserFacadeImpl(final UserMapper userMapper, final UserService userService) {
-        this.userMapper = userMapper;
-        this.userService = userService;
-    }
 
     @Override
     public List<UserDto> getUsers() {

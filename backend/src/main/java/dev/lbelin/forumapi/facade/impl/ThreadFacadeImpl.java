@@ -1,0 +1,41 @@
+package dev.lbelin.forumapi.facade.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import dev.lbelin.forumapi.dto.ThreadDto;
+import dev.lbelin.forumapi.facade.ThreadFacade;
+import dev.lbelin.forumapi.mapper.ThreadMapper;
+import dev.lbelin.forumapi.service.ThreadService;
+
+@Service
+public class ThreadFacadeImpl implements ThreadFacade {
+
+    @Autowired
+    private ThreadMapper threadMapper;
+
+    @Autowired
+    private ThreadService threadService;
+
+    @Override
+    public List<ThreadDto> getAllThreads() {
+        return threadMapper.toDto(threadService.getAllThreads());
+    }
+
+    @Override
+    public List<ThreadDto> getAllThreadsByAuthorId(Long authorId) {
+        return threadMapper.toDto(threadService.getAllThreadsByAuthorId(authorId));
+    }
+
+    @Override
+    public ThreadDto createThread(ThreadDto threadDto) {
+        return threadMapper.toDto(threadService.createThread(threadMapper.toEntity(threadDto)));
+    }
+
+    @Override
+    public void deleteThreadById(Long id) {
+        threadService.deleteThreadById(id);
+    }
+}
