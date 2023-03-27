@@ -10,7 +10,7 @@ public interface ThreadService {
 
     public List<Thread> getAllThreadsByAuthorId(Long authorId);
 
-    public Thread createThread(Thread thread);
+    public Thread createThread(Long authorId, Thread thread);
 
     public void deleteThreadById(Long id);
 }

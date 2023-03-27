@@ -38,11 +38,12 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Thread createThread(Thread thread) {
-        Optional<User> user = userRepository.findById(thread.getAuthor().getId());
+    public Thread createThread(Long authorId, Thread thread) {
+        Optional<User> user = userRepository.findById(authorId);
         if (!user.isPresent()) {
             throw new NotFoundException(ExceptionMessageConstants.USER_ID_NOT_FOUND);
         }
+        thread.setAuthor(user.get());
         return threadRepository.save(thread);
     }
 

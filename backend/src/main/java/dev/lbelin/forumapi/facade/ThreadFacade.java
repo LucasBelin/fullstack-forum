@@ -10,7 +10,7 @@ public interface ThreadFacade {
 
     public List<ThreadDto> getAllThreadsByAuthorId(Long authorId);
 
-    public ThreadDto createThread(ThreadDto threadDto);
+    public ThreadDto createThread(Long authorId, ThreadDto threadDto);
 
     public void deleteThreadById(Long id);
 }

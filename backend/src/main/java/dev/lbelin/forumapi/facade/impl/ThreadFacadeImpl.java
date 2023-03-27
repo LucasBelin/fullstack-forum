@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dev.lbelin.forumapi.dto.ThreadDto;
 import dev.lbelin.forumapi.facade.ThreadFacade;
 import dev.lbelin.forumapi.mapper.ThreadMapper;
+import dev.lbelin.forumapi.model.Thread;
 import dev.lbelin.forumapi.service.ThreadService;
 
 @Service
@@ -30,8 +31,9 @@ public class ThreadFacadeImpl implements ThreadFacade {
     }
 
     @Override
-    public ThreadDto createThread(ThreadDto threadDto) {
-        return threadMapper.toDto(threadService.createThread(threadMapper.toEntity(threadDto)));
+    public ThreadDto createThread(Long authorId, ThreadDto threadDto) {
+        Thread thread = threadMapper.toEntity(threadDto);
+        return threadMapper.toDto(threadService.createThread(authorId, thread));
     }
 
     @Override
