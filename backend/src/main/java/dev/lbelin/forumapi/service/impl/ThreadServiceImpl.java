@@ -29,6 +29,15 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
+    public Thread getThreadById(Long id) {
+        Optional<Thread> thread = threadRepository.findById(id);
+        if (!thread.isPresent()) {
+            throw new NotFoundException(ExceptionMessageConstants.THREAD_ID_NOT_FOUND);
+        }
+        return thread.get();
+    }
+
+    @Override
     public List<Thread> getAllThreadsByAuthorId(Long authorId) {
         Optional<User> user = userRepository.findById(authorId);
         if (!user.isPresent()) {

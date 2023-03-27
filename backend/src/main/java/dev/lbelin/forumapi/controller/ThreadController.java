@@ -27,7 +27,12 @@ public class ThreadController {
         return threadFacade.getAllThreads();
     }
 
-    @GetMapping("/{authorId}")
+    @GetMapping("/{id}")
+    public ThreadDto getThreadById(@PathVariable Long id) {
+        return threadFacade.getThreadById(id);
+    }
+
+    @GetMapping("/author/{authorId}")
     public List<ThreadDto> getAllThreadsByAuthorId(@PathVariable Long authorId) {
         return threadFacade.getAllThreadsByAuthorId(authorId);
     }

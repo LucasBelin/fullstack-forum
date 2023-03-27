@@ -8,6 +8,8 @@ public interface ThreadService {
 
     public List<Thread> getAllThreads();
 
+    public Thread getThreadById(Long id);
+
     public List<Thread> getAllThreadsByAuthorId(Long authorId);
 
     public Thread createThread(Long authorId, Thread thread);

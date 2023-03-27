@@ -26,6 +26,11 @@ public class ThreadFacadeImpl implements ThreadFacade {
     }
 
     @Override
+    public ThreadDto getThreadById(Long id) {
+        return threadMapper.toDto(threadService.getThreadById(id));
+    }
+
+    @Override
     public List<ThreadDto> getAllThreadsByAuthorId(Long authorId) {
         return threadMapper.toDto(threadService.getAllThreadsByAuthorId(authorId));
     }

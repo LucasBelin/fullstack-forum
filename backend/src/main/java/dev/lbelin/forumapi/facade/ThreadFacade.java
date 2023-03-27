@@ -8,6 +8,8 @@ public interface ThreadFacade {
 
     public List<ThreadDto> getAllThreads();
 
+    public ThreadDto getThreadById(Long id);
+
     public List<ThreadDto> getAllThreadsByAuthorId(Long authorId);
 
     public ThreadDto createThread(Long authorId, ThreadDto threadDto);
