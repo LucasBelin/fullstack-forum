@@ -29,6 +29,11 @@ public class PostServiceImpl implements PostService {
     private UserRepository userRepository;
 
     @Override
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
+
+    @Override
     public List<Post> getAllPostsByThreadId(Long threadId) {
         Optional<Thread> thread = threadRepository.findById(threadId);
         if (!thread.isPresent()) {
@@ -44,6 +49,39 @@ public class PostServiceImpl implements PostService {
             throw new NotFoundException(ExceptionMessageConstants.USER_ID_NOT_FOUND);
         }
         return postRepository.getAllPostsByAuthorId(authorId);
+    }
+
+    @Override
+    public Post createPost(Long authorId, Long threadId, Post post) {
+        Optional<User> user = userRepository.findById(authorId);
+        Optional<Thread> thread = threadRepository.findById(threadId);
+        if (!user.isPresent()) {
+            throw new NotFoundException(ExceptionMessageConstants.USER_ID_NOT_FOUND);
+        }
+        if (!thread.isPresent()) {
+            throw new NotFoundException(ExceptionMessageConstants.THREAD_ID_NOT_FOUND);
+        }
+        Thread updatedThread = thread.get();
+        updatedThread.update();
+        post.setAuthor(user.get());
+        post.setThread(updatedThread);
+        return postRepository.save(post);
+    }
+
+    @Override
+    public Post updatePost(Long postId, Long threadId, Post post) {
+        Optional<Thread> thread = threadRepository.findById(threadId);
+        Optional<Post> postToUpdate = postRepository.findById(postId);
+        if (!thread.isPresent()) {
+            throw new NotFoundException(ExceptionMessageConstants.THREAD_ID_NOT_FOUND);
+        }
+        if (!postToUpdate.isPresent()) {
+            throw new NotFoundException(ExceptionMessageConstants.POST_ID_NOT_FOUND);
+        }
+        postToUpdate.get().setContent(post.getContent());
+        postToUpdate.get().update();
+        thread.get().update();
+        return postRepository.save(postToUpdate.get());
     }
 
     @Override

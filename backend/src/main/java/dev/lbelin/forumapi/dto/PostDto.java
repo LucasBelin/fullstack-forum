@@ -19,5 +19,5 @@ public class PostDto extends BaseDto {
     private UserDto author;
 
     @NotNull
-    private ThreadDto thread;
+    private ThreadWithoutPostsDto thread;
 }

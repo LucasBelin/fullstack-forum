@@ -19,10 +19,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "posts")
 public class Post extends BaseEntity {
 
-    @NotBlank
-    @Column(name = "content", length = 65535, nullable = false)
-    private String content;
-
     @OneToOne(optional = true)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User author;
@@ -31,4 +27,8 @@ public class Post extends BaseEntity {
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "thread_id", referencedColumnName = "id")
     private Thread thread;
+
+    @NotBlank
+    @Column(name = "content", length = 65535, nullable = false)
+    private String content;
 }

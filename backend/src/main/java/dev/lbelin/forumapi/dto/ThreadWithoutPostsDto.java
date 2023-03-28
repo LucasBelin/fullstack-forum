@@ -1,7 +1,5 @@
 package dev.lbelin.forumapi.dto;
 
-import java.util.List;
-
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
@@ -11,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ThreadDto extends BaseDto {
+public class ThreadWithoutPostsDto extends BaseDto {
 
     @NotBlank
     @Length(max = 255)
@@ -21,6 +19,4 @@ public class ThreadDto extends BaseDto {
     private String description;
 
     private UserDto author;
-
-    private List<PostWithoutThreadDto> posts;
 }

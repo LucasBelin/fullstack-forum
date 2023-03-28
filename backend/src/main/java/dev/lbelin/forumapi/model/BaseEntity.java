@@ -33,4 +33,9 @@ public abstract class BaseEntity {
         createdOn = now;
         updatedOn = now;
     }
+
+    public BaseEntity update() {
+        updatedOn = LocalDateTime.now();
+        return this;
+    }
 }
